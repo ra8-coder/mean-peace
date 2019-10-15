@@ -5,14 +5,14 @@ import { Subject } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class PostsService {
   private posts: Post[] = [];
-  private postsUpated = new Subject<Post[]>();
+  private postsUpdated = new Subject<Post[]>();
 
   getPosts() {
     return [...this.posts];
   }
 
   getPostUpdateListener() {
-    return this.postsUpated.asObservable();
+    return this.postsUpdated.asObservable();
   }
 
   addPost(title: string, content: string) {
@@ -21,6 +21,6 @@ export class PostsService {
       content: content
     };
     this.posts.push(post);
-    this.postsUpated.next([...this.posts]);
+    this.postsUpdated.next([...this.posts]);
   }
 }
